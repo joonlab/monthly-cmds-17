@@ -9,7 +9,7 @@
 
 ## 캡스톤 한 줄
 
-> **"AI가 4단 사다리로 모아 교차검증한 자료를 → `/ingest` 한 줄로 → 복리로 자라는 검증된 나만의 위키 백과로 컴파일한다."**
+> **"AI가 사다리(0→4단)로 모아 교차검증한 자료를 → `/ingest` 한 줄로 → 복리로 자라는 검증된 나만의 위키 백과로 컴파일한다."**
 > *RAG = 질문마다 매번 재검색. LLM Wiki = 한 번 읽어 위키로 컴파일하고 계속 갱신 → compounding knowledge.*
 > *"Obsidian은 IDE, LLM은 프로그래머, Wiki는 코드베이스." — Andrej Karpathy*
 
@@ -82,7 +82,7 @@ Raw Sources·Wiki·MOC·Inbox 수, collectionPurpose 커버리지, Core Context 
 
 앞 단계에서 배운 방법으로 자료를 모아 `00. Inbox/`에 넣는다. 세 가지 길:
 
-1. **Web Clipper (가장 편함)** — `90. Settings/Sharing/clipper-*.json` 17종을 Obsidian Web Clipper에 등록하면, 브라우저에서 기사·논문·X·유튜브를 버튼 한 번으로 `00. Inbox/`에 카테고리별 저장. (`90. Settings/Sharing/Setup Guide.md` 참고)
+1. **Web Clipper (가장 편함 — 사다리 0순위)** — Web Clipper는 별도 서비스·키 없이 브라우저에서 바로 쓰는 **0순위 수집 도구**다. `90. Settings/Sharing/clipper-*.json` 17종을 Obsidian Web Clipper에 등록하면, 브라우저에서 기사·논문·X·유튜브를 버튼 한 번으로 `00. Inbox/`에 카테고리별 저장. (`90. Settings/Sharing/Setup Guide.md` 참고)
 2. **앞 단계 스크립트** — arXiv/Tavily/Firecrawl(01~03)로 모은 결과를 `00. Inbox/01. Articles/` 등에 `.md`로 저장.
    ```
    code/firecrawl_demo.py 패턴으로 <블로그 URL>을 마크다운으로 긁어서

@@ -11,8 +11,8 @@
 | 레버 | 고정하는 것 | 위치 |
 |---|---|---|
 | (A) 하네스 엔지니어링 | 규칙·병렬·워크플로·권한 | `CLAUDE.md`, 서브에이전트, slash command, hooks, `settings.json` |
-| (B) Skill | 재사용 절차 패키징 | `.claude/skills/<name>/SKILL.md` |
-| (C) MCP | 외부 API를 도구로 | `claude mcp add ...` (1~5단에서 실습함) |
+| (B) Skill | 재사용 절차 패키징 (**우선 권장**) | `.claude/skills/<name>/SKILL.md` |
+| (C) MCP | 외부 API/도구를 모델이 자동 호출 | `claude mcp add ...` (0~5단에서 실습함) |
 | (D) 프롬프트 | 1회 지시의 품질 | 대화 입력 / command 본문 |
 | (E) 환각완화·검증 | 출력 신뢰도 | 1차출처·교차검증·verify·인젝션 방어 |
 
@@ -52,7 +52,7 @@ CLAUDE.md는 매 세션 자동 로드되는 시스템 규칙이다(스킬 본문
 
 ### A-3. Slash command / hooks로 워크플로 고정
 
-이 키트에는 **`/research-ladder`** 커맨드가 들어 있다([`.claude/commands/research-ladder.md`](../.claude/commands/research-ladder.md)). 한 주제를 4단 사다리로 조사해 마크다운으로 저장한다.
+이 키트에는 **`/research-ladder`** 커맨드가 들어 있다([`.claude/commands/research-ladder.md`](../.claude/commands/research-ladder.md)). 한 주제를 사다리(0→4단)로 조사해 마크다운으로 저장한다(WebFetch·RSS·Clipper = 0순위 가벼운 수집부터, 안 되면 공식 API → … 순으로 내려간다).
 
 **호출:**
 ```
@@ -78,7 +78,9 @@ CLAUDE.md는 매 세션 자동 로드되는 시스템 규칙이다(스킬 본문
 
 ---
 
-## (B) Skill 패키징
+## (B) Skill 패키징 — ★ 우선 권장
+
+**절차를 파일로 굳혀 어떤 수집이든 재사용 — MCP보다 먼저 고려한다.** 코드·서버 없이 마크다운 한 장으로 시작할 수 있어 가장 유연하다. (MCP는 외부 API/도구를 모델이 자동 호출해야 할 때 — (C) 참조.)
 
 이 키트에 **`research-ladder` 스킬**이 들어 있다([`.claude/skills/research-ladder/SKILL.md`](../.claude/skills/research-ladder/SKILL.md)). 절차를 파일로 굳혀, 호출 시에만 로드된다(평소 토큰 0).
 
@@ -96,9 +98,11 @@ CLAUDE.md는 매 세션 자동 로드되는 시스템 규칙이다(스킬 본문
 
 ---
 
-## (C) MCP 만들기 — 공식 API를 도구로
+## (C) MCP 만들기 — 외부 API/도구를 모델이 자동 호출해야 할 때
 
-1~5단에서 이미 여러 MCP를 등록했다. 직접 만드는 최소 골격([`code/research_mcp.py`](../code/research_mcp.py)):
+> Skill로 충분하면 Skill을 쓰고, **외부 API/도구를 모델이 대화 중 스스로 호출**해야 할 때 MCP로 간다.
+
+0~5단에서 이미 여러 MCP를 등록했다. 직접 만드는 최소 골격([`code/research_mcp.py`](../code/research_mcp.py)):
 
 ```python
 # pip install "mcp[cli]" httpx
