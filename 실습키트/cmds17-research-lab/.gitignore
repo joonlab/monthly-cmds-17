@@ -1,0 +1,29 @@
+# 비밀정보 — 절대 커밋 금지
+.env
+*.env
+!.env.example
+
+# 브라우저 로그인 세션(쿠키 포함 — 사칭 위험)
+state.json
+*.storage_state.json
+
+# 파이프라인 상태/캐시
+state.json
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# OS / 에디터
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# 가상환경
+.venv/
+venv/
+env/
+
+# 캡스톤 산출물(원하면 주석 해제해 커밋 제외)
+# LLMWiki/sources_raw/
+# LLMWiki/audio/

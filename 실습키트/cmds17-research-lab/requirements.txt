@@ -1,0 +1,22 @@
+# 월간 CMDS 17회차 실습 키트 — Python 의존성
+# 설치:  pip install -r requirements.txt
+
+# ① 공식 API — arXiv Atom XML 파싱
+feedparser
+
+# ③ 크롤링 SaaS
+firecrawl-py        # Firecrawl: URL → LLM-ready 마크다운
+apify-client        # Apify: 플랫폼 전용 Actor
+
+# ④ 브라우저 자동화 (cmux 대체: 수강생은 Playwright로 실습)
+playwright          # 설치 후 'playwright install' 로 브라우저 바이너리 받기
+
+# ⑤ AI에게 통째로 위임
+google-genai        # Gemini grounding / Deep Research
+
+# ⑦ 하네스 — MCP 서버 만들기
+mcp[cli]            # 공식 MCP Python SDK (FastMCP)
+httpx               # MCP 도구에서 외부 API 호출
+
+# 공통
+python-dotenv       # .env 에서 API 키 로드
